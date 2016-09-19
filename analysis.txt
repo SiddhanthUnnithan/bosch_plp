@@ -21,8 +21,10 @@ Numerical Training Set
 - need to identify relationships between features
 - we can discard n-1 features if n features are numerically related (direct mapping)
 - one of the easiest ways to view the relationship between features is to generate plots
+        - brute force approach; last resort as sifting through plots will take long
         - problem: 970 x 970 grid of plots (will take a while to compute)
         - we can split it into chunks and view smaller sets at each time
+        - can we split it intelligently or are we forced to do it iteratively for fixed chunk size
 - can start by separating different types
         - only two distinct types: 'float64' and 'int64' where 'int64' has 2 counts
         - int64 counts: Id, Response (not useful)
@@ -33,6 +35,8 @@ Numerical Training Set
         - line 1: 2 stations, 513 features
         - line 2: 3 stations, 42 features
         - line 3: 21 stations, 245 features
+        - need to think about whether we run the prediction with the segment-specific analysis
+        - alternative: combine all of the segments and perform analysis
 - start with analysis of line 2 => 3 dataframes
         - smallest number of features
         - might give indication of how useful it is to segment the data based on line and station
@@ -40,5 +44,18 @@ Numerical Training Set
 - analysis of line 0 => 24 dataframes
         - look at all
         - dataframe identifcation df_0<station number>
-        - df_226
-                - nothing unusual in terms of value counts for each column
+- df_226
+        - 15 features
+        - nothing unusual in terms of value counts
+        - NaN count conducted; want to check whether we can discard x parts from these features
+        - we only discard a part from the station if total_measurements == 0
+        - number of equal nan value counts = 13 => 13 features with the same number of nan counts
+        - we want to determine which parts have len(df_226.columns) NaN's
+        - use strictly_nan() function and pass transposed dataframe
+                - takes a while to run as we're iterating over 1,183,747 columns and checkng each
+        - we can then cut the dataframe to all non-nan parts and conduct feature analysis
+        - 956,736 parts with strictly nan values
+        - df_226_cut: newly created dataframe with significant parts
+- df_226_cut
+        - 15 features; 227,011 parts with data
+        - run feature analysis (plots) and observe relations
