@@ -59,3 +59,9 @@ Numerical Training Set
 - df_226_cut
         - 15 features; 227,011 parts with data
         - run feature analysis (plots) and observe relations
+        - generate 15 plots and try and keep scales consistent
+                - 5 x 3 grid
+                - use grid to compare data for each of the features
+                - build generic plot building function
+                - doesn't fare very well given the sheer size of the data
+        - looking into more realistic feature engineering/selection algorithms
