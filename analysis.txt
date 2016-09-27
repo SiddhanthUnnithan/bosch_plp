@@ -65,3 +65,24 @@ Numerical Training Set
                 - build generic plot building function
                 - doesn't fare very well given the sheer size of the data
         - looking into more realistic feature engineering/selection algorithms
+
+- Joan's suggestion
+        - random sample the data set
+        - ~10,000 records with all 970 features
+        - worry about combining models once we've covered the entire sample set
+        - POA
+                - split dataset into segments (taking the first 300,000 records)
+                - random sampling 10,000 records from the first 300,000
+
+- 300,000 data set
+        - split data set into failures and passes
+        - want to see how features correspond to the part's response
+                - plot feature value against response
+                - might be able to determine thresholds for each feature (assuming binary tresholds)
+        - 970 plots (will take time to run)
+                - splitting plots into pieces
+                - add params to function allowing specification of start and end indices for dataframe
+
+Categorical Training Set
+- 2.5 GB worth of data
+- unable to load this data into a dataframe
