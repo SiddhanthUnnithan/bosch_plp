@@ -1,6 +1,8 @@
 # bosch_plp
 Bosch Production Line Performance Analysis
 
+https://www.kaggle.com/c/bosch-production-line-performance
+
 - Refer to analysis.txt for notes taken while 'modelling'
 
 Submission Deadline
