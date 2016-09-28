@@ -82,6 +82,13 @@ Numerical Training Set
         - 970 plots (will take time to run)
                 - splitting plots into pieces
                 - add params to function allowing specification of start and end indices for dataframe
+        - decent output with each of the features plotted against the response
+        - another added feature is switch frequency
+                - number of times the response moves from 0 to 1 across all parts for a given feature
+                - map feature values to 0 or 1 responses; remove all responses that have NaN values for the feature
+                - check notebook for switch frequency plot
+                - no frequency that exceeds 3000 => interest halt
+        - conduct plot analysis of each feature against the switch frequency of said feature
 
 Categorical Training Set
 - 2.5 GB worth of data
