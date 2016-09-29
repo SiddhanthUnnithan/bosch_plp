@@ -90,6 +90,72 @@ Numerical Training Set
                 - no frequency that exceeds 3000 => interest halt
         - conduct plot analysis of each feature against the switch frequency of said feature
 
+Feature Analysis
+- look at the plot for each feature and take note of interesting trends (e.g. number of outliers, ranges which map to responses)
+        - few overall responses
+                - L0_S20_F461
+                - L1_S24_F746
+                - L1_S24_751
+                - L1_S24_F751
+                - L0_S6_F118
+                - L0_S8_F144
+                - L0_S3_F88
+                - L0_S7_F136
+                - L0_S15_F409
+                - L0_S2_F52
+        - few positive responses (relative => criterion is usually 0.5)
+                - L0_S8_F149
+                - L1_S24_F756
+                - L1_S24_F733
+                - L1_S24_751
+                - L0_S9_F205
+                - L1_S24_F719
+                - L0_S20_F463
+                - L0_S20_F466
+                - L0_S8_F146
+                - L1_S24_F679
+                - L0_S10_F269
+                - 
+        - few negative responses (relative => criterion is usually 0.5)
+                - 
+        - 1<=>1 mapping between response variables for the same feature value
+                - few points is another criterion (less dense 
+                - L0_S12_F338
+                - L0_S23_F635
+                - L0_S18_F435
+                - L0_S14_F366
+                - L0_S14_F358
+                - L0_S12_F344
+                - L0_S12_F340
+                - L0_S15_F406
+                - L0_S2_F32
+                - L0_S23_F647
+                - L0_S0_F14
+                - L0_S19_F453
+                - L0_S21_F492
+                - L0_S0_F10
+                - L0_S15_F400
+                - L0_S12_F342
+                - L0_S0_F6
+                - L0_S0_F2
+                - L0_S15_F412
+                - L0_S14_F382
+                - L0_S10_F239
+                - L0_S2_F56
+                - L0_S12_F334
+                - L0_S9_F175
+                - L0_S3_F76
+                - L0_S15_F394
+                - L0_S11_F298
+                - L0_S22_F566
+                - L0_S3_F68
+                - L0_S0_F8
+                - L0_S3_F92
+                - L0_S21_F507
+                - L0_S2_F40
+                - L0_S14_F374
+                - L0_S12_F336
+
 Categorical Training Set
 - 2.5 GB worth of data
 - unable to load this data into a dataframe
