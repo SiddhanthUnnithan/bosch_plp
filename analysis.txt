@@ -155,7 +155,37 @@ Feature Analysis
                 - L0_S2_F40
                 - L0_S14_F374
                 - L0_S12_F336
+- need to build a small model with analysis from plots
+        - should be useful to get a prelim evaluation; gain experience so that model building is smoother
+        - alternatively, build a model using all of the numerical features and check to see how that model fares on test numerical
+
+- use SGDClassifier with all features
+        - loss set to 'log'
+        - leaving all of the other parameters the same
+        - classifier does not like 'nan' values; need to research intelligent ways to fill nan values
+                - SO recommendations: impute data with median() or 'ffill'
+                - ffill: propagate last seen value to next valid
+        - http://www.jmlr.org/papers/volume8/saar-tsechansky07a/saar-tsechansky07a.pdf
+        - less accurate methods: predictive value imputation, C4.5 distribution-based imputation
+        - paper addresses imputation at prediction time; I'm going to try and apply the same methods for induction time
+        - value imputation: estimate value in place of missing feature; more common in statistics community
+        - distribution imputation: esimate conditional distribution of missing value; popular in non-Bayesian ML comm.
+        - reduced feature: construct model but employ only features for a particular test case
+        - all features have NaN values for all parts
+        - think I might try and implement a hybrid model; remove all features that have a nan value count past a certain threshold
+                - need to view nan frequency across each feature and plot
+                - once we remove some of the features, we use value imputation to replace the remaining null values
+        - will eventually need to create a separate dataframe (df_numeric.copy()) => one dataframe instance is 2.2GB
+        - 701 features with null value counts between 250000 and 300000 (max number of counts is 300000 as I'm only looking at 1/3 of the numeric data)
+        
 
 Categorical Training Set
 - 2.5 GB worth of data
 - unable to load this data into a dataframe
+
+Supervised Learning Notes
+- Generalized Linear Models
+        - SGDClassifier
+                - useful for dataset with large number of samples and features
+        - loss="log" fits logistic regression model
+        -  
