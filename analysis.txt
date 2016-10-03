@@ -165,19 +165,37 @@ Feature Analysis
         - classifier does not like 'nan' values; need to research intelligent ways to fill nan values
                 - SO recommendations: impute data with median() or 'ffill'
                 - ffill: propagate last seen value to next valid
-        - http://www.jmlr.org/papers/volume8/saar-tsechansky07a/saar-tsechansky07a.pdf
+
+- http://www.jmlr.org/papers/volume8/saar-tsechansky07a/saar-tsechansky07a.pdf
         - less accurate methods: predictive value imputation, C4.5 distribution-based imputation
         - paper addresses imputation at prediction time; I'm going to try and apply the same methods for induction time
         - value imputation: estimate value in place of missing feature; more common in statistics community
         - distribution imputation: esimate conditional distribution of missing value; popular in non-Bayesian ML comm.
         - reduced feature: construct model but employ only features for a particular test case
-        - all features have NaN values for all parts
+        - multiple imputation: Monte Carlo approach that generates multiple simulated versions of data set; each are analyzed and results are combined to generate inference
+        - predictive value imputation
+                - common: replace missing value with feature's mean or mode (for real-valued, discrete-valued features, respectively)
+                - average of values of other features for that particular record; useful for subjective features where there is a large variance between features for a record than records for a feature
+                - predictive model that induces relationship between available values and missing values
+        - distribution-based imputation
+                - given distribution of values over a feature, we can estimate expected distribution of of record
+                - weight assignments of missing values
+                - generate a probability distribution of values and assign probabilistic weights
+                - when missing value is encountered multiple pseudo-instances are generated with multiple values and weights corresponding to the estimated probability for that value
+        - unique value imputation
+                - replace each missing value with an arbitrary unique value
+                - preferable in following conditions: missing value depends on value of class (target) and dependence is present in training and test data
+
+
+- all features have NaN values for all parts
         - think I might try and implement a hybrid model; remove all features that have a nan value count past a certain threshold
                 - need to view nan frequency across each feature and plot
                 - once we remove some of the features, we use value imputation to replace the remaining null values
         - will eventually need to create a separate dataframe (df_numeric.copy()) => one dataframe instance is 2.2GB
         - 701 features with null value counts between 250000 and 300000 (max number of counts is 300000 as I'm only looking at 1/3 of the numeric data)
-        
+        - doesn't make much sense to use reduced-feature approach and only have ~190 features to work with
+                - speak to Joan and ask what her opinion is on this 
+        - going to try a predictive value imputation with feature mean
 
 Categorical Training Set
 - 2.5 GB worth of data
@@ -187,5 +205,4 @@ Supervised Learning Notes
 - Generalized Linear Models
         - SGDClassifier
                 - useful for dataset with large number of samples and features
-        - loss="log" fits logistic regression model
-        -  
+        - loss="log" fits logistic regression model  
