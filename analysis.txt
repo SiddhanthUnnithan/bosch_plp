@@ -194,8 +194,15 @@ Feature Analysis
         - will eventually need to create a separate dataframe (df_numeric.copy()) => one dataframe instance is 2.2GB
         - 701 features with null value counts between 250000 and 300000 (max number of counts is 300000 as I'm only looking at 1/3 of the numeric data)
         - doesn't make much sense to use reduced-feature approach and only have ~190 features to work with
-                - speak to Joan and ask what her opinion is on this 
+                - we want the model to reflect all possible instances regardless of how 'intelligent' it is
         - going to try a predictive value imputation with feature mean
+                - Joan suggested that I use an interpolation for missing values; alternative is tried na where we leave NaNs as blanks => doesn't work when we get to classification stage
+        - cannot use interpolation if lower_bound or upper_bound is NaN
+        - cannot use ffill or bfill if upper or lower bound of any series is Nan 
+        - trying three different imputation methods (need to delete copy of dataframe once model is built)
+                - mean
+                - median
+                - average of features for a single part (most computationally expensive)
 
 Categorical Training Set
 - 2.5 GB worth of data
