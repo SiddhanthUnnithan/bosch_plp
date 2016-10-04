@@ -203,6 +203,14 @@ Feature Analysis
                 - mean
                 - median
                 - average of features for a single part (most computationally expensive)
+        - realized that I don't need to make a copy of the dataframe for each iteration
+                - just need 'values' and we can store 'Response' as it is consistent across all transformations
+
+- simple SGDClassifier model
+        - numeric test data is used for submission; for now we want to determine model accuracy by splitting the data into 'training' and 'test' sets
+                - 80% training and 20% testing (remember that this is already ~30% of the initial data set)
+        - if the models with imputation are promising for the subsets, then I'll use the entire train_numeric data set and conduct an 80-20 split 
+                
 
 Categorical Training Set
 - 2.5 GB worth of data
