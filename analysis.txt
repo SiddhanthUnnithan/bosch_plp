@@ -210,7 +210,11 @@ Feature Analysis
         - numeric test data is used for submission; for now we want to determine model accuracy by splitting the data into 'training' and 'test' sets
                 - 80% training and 20% testing (remember that this is already ~30% of the initial data set)
         - if the models with imputation are promising for the subsets, then I'll use the entire train_numeric data set and conduct an 80-20 split 
-                
+        - we conduct the same imputation on both the test and the training set for "consistency" (not sure how this is going to affect the model for feature-average imputation)
+        - MCC evaluation for median and mean imputation: 1.0 (slightly odd)
+                - 1 true positive, 2 true negatives, 0 false positives, 0 false negatives
+        - can't apply a NaN transformation with a feature_average imputation due to a large number of rows with strictly NaN records across all features
+        - need to investigate nature of MCC evaluation                
 
 Categorical Training Set
 - 2.5 GB worth of data
