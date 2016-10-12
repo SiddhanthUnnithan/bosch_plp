@@ -214,7 +214,7 @@ Feature Analysis
         - MCC evaluation for median and mean imputation: 1.0 (slightly odd)
                 - 1 true positive, 2 true negatives, 0 false positives, 0 false negatives
         - can't apply a NaN transformation with a feature_average imputation due to a large number of rows with strictly NaN records across all features
-        - need to investigate nature of MCC evaluation                
+        - need to investigate nature of MCC evaluation for median and mean imputations                
 
 Categorical Training Set
 - 2.5 GB worth of data
