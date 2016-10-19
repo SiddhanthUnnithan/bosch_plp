@@ -216,6 +216,17 @@ Feature Analysis
         - can't apply a NaN transformation with a feature_average imputation due to a large number of rows with strictly NaN records across all features
         - need to investigate nature of MCC evaluation for median and mean imputations                
 
+- feature correlation
+        - one of the options is df.corr(); makes sense to plot the correlation for a small number of features
+        - don't know how plotting 970 features is going to look like; can't reduce the number of features to use as we have to iterate over smaller sets
+        - Eric's suggestion
+                - build a graph using the correlation result between all 970 features
+                - identify redundant nodes based on number of edges
+        - will try PCA with all features (try and intelligently reduce the dimensions of the data)
+
+- principal component analysis
+        - all preprocessing techniques are extremely slow given the size of the data set (using all 1.8 million records with 970 features)
+
 Categorical Training Set
 - 2.5 GB worth of data
 - unable to load this data into a dataframe
