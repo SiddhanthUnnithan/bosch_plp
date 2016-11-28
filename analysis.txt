@@ -236,3 +236,61 @@ Supervised Learning Notes
         - SGDClassifier
                 - useful for dataset with large number of samples and features
         - loss="log" fits logistic regression model  
+
+==========================
+
+Numerical Classification
+- confident that I can use regularization and a set of ensemble methods to obtain at least 70% overall accuracy with just the numerical data
+- I'll have to think of a smart way to find the correlation between all of the numeric variables
+- easiest way to conduct feature selection is to use SelectFromModel for a set of linear models and then take the top 'x' features based on their feature importance
+- don't think I need to use a stratified sample of the data => ~1.1 million records and known 970 numerical features
+- need to run nan value imputation prior to using models 
+        - all features have missing values; finding all rows with missing values is too slow
+        - we create a split as soon as we perform imputations => run correlations and model checks with each imputation type and then choose the better performing one
+        - if both perform poorly, I'll have to think of a smarter way to impute missing values
+        - performance bottleneck: can't load three instances of the same dataframe as I don't have enough memory for it
+        - will have to run one imputation and all of the analyses sequentially
+- might not be smart to plot correlation between all 970 features (970 x 970 plot)
+- going to try grouping multiple features and generating a number of correlation plots
+- alternative to plotting correlation/covariance between features
+        - run features against estimators and look at features with close importance rankings
+        - if non-linear intricacies are discarded (unlikely) then two redundant features should have the same level of importance
+        - the only reason a correlation is considered is to reduce the feature set size
+        - might not even have to do so if we can extract importance features from sets of ensemble methods
+- ensemble method analysis
+        - use a lesser number of estimators for determining important features; increase the number of estimators once we have a smaller feature set
+        - output feature importances from merged SelectFromModel results to csv
+        - ExtraTreesClassifier (n_estimators=10 on the entire training set i.e. all features)
+                - accuracy : 99.4227384724 %
+                - hit score (self-defined): 0.486381322957 %
+                - positive-specific ("1")
+                        - precision : 0.714
+                        - recall: 0.005
+                        - f1-score: 0.010
+                        - support: 2056
+                - high overall accuracy due to the proportion of positives to negatives in the data set => large number of false negatives
+                - SelectFromModel returned 253 features => xt_sfm_features
+        - RandomForestClassifier (n_estimators=10)
+                - accuracy: 99.4278071102 %
+                - hit score: 2.14007782101 %
+                - positive specific
+                        - precision: 0.688
+                        - recall: 0.021
+                        - f1-score: 0.042
+                        - support: 2056
+                - similar high overall accuracy as Extra Trees
+                - performed better overall in terms of accuracy and hit score, in comparison to Extra Trees
+                - lower scored features based on estimator ranking
+                - SelectFromModel returned 258 features => rf_sfm_features
+        - GradientBoostClassifier
+                - accuracy: 99.4340021119 %
+                - hit score: 5.30155642023
+                - positive specific
+                        - precision: 0.634
+                        - recall: 0.053
+                        - f1-score: 0.098
+                        - support: 2056
+                - highest overall accuracy and hit score across all ensemble methods
+                - lower precision than random forests => tp / (tp + fp)
+                - small number of overall features (23) from SelectFromModel => gb_sfm_features
+                
