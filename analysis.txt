@@ -293,4 +293,24 @@ Numerical Classification
                 - highest overall accuracy and hit score across all ensemble methods
                 - lower precision than random forests => tp / (tp + fp)
                 - small number of overall features (23) from SelectFromModel => gb_sfm_features
-                
+- best performing overall ensemble method was GradientBoostClassifier
+        - going to merge selected features from all three methods and then running a GBM model
+        - consider comparing results from the ensemble methods with that of a LSVM
+- feature subset
+        - Gradient Boost Model
+                - accuracy: 99.4269623372 %
+                - hit score: 4.71789883268 %
+                - positive specific
+                        - precision: 0.561
+                        - recall: 0.047
+                - overall poorer results than the GBM with all of the features
+        - tried LSVM => much poorer results (in terms of precision and recall than GBM)
+        - tried RandomForest
+                - accuracy: 99.4354100669 %
+                - hit score: 2.82101167315 %
+                - positive specific
+                        - precision: 0.892
+                        - recall: 0.028
+                - overall better accuracy and precision than gradient boost machine
+                - higher precision seen thus far; due to a small number of false positives
+                - low recall is due to a large number of false negatives (higher denominator)
