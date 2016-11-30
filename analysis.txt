@@ -284,7 +284,7 @@ Numerical Classification
                 - SelectFromModel returned 258 features => rf_sfm_features
         - GradientBoostClassifier
                 - accuracy: 99.4340021119 %
-                - hit score: 5.30155642023
+                - hit score: 5.30155642023s
                 - positive specific
                         - precision: 0.634
                         - recall: 0.053
@@ -309,8 +309,18 @@ Numerical Classification
                 - accuracy: 99.4354100669 %
                 - hit score: 2.82101167315 %
                 - positive specific
-                        - precision: 0.892
+                        - precision: 0.892 (this is a good precision)
                         - recall: 0.028
                 - overall better accuracy and precision than gradient boost machine
                 - higher precision seen thus far; due to a small number of false positives
                 - low recall is due to a large number of false negatives (higher denominator)
+- using a feature subset wasn't very helpful in terms of correctly identifying positives (1s)
+        - might try under-sampling so that there's less noise (negatives) for the model to take care of
+        - what is an appropriate portion to use for the over-represented class
+                - try a range
+        - used a range of proportions to reduce the overall sample of the over-represented class (0s)
+        - found that sample size was inversely proportional to the model's recall score
+        - overall accuracy still remained above 95%; models were still able to predict negatives with higher precision and recall than positives
+                - score persistence was strictly due to the number of negatives
+        - best recall score was with 0.01 portion of negatives => 23.2 %
+                - not the desired score but it leaves me thinking whether or not I'm more concerned with precision or recall
