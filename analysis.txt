@@ -324,3 +324,4 @@ Numerical Classification
                 - score persistence was strictly due to the number of negatives
         - best recall score was with 0.01 portion of negatives => 23.2 %
                 - not the desired score but it leaves me thinking whether or not I'm more concerned with precision or recall
+- might consider plotting all of the selected features (or top 20) from the subset against the target variable
